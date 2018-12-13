@@ -1,3 +1,4 @@
 # cs483-dirLockUnlock
-Students: Hayden Coffey, Aaron Johnson\n
+Students: Hayden Coffey, Aaron Johnson
+
 /cert/ contains example RSA/EC certificates
