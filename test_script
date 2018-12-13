@@ -1,0 +1,21 @@
+#!/bin/sh
+
+#Hayden's Cert
+echo "Generating Hayden's certificates..."
+./keygen -s Hayden -t rsa -pub cert/hrsaPub -priv cert/hrsaPriv
+./keygen -s Hayden -t ec -pub cert/hecPub -priv cert/hecPriv
+
+#Aaron's Cert
+echo "Generating Aaron's certificates..."
+./keygen -s Aaron -t rsa -pub cert/arsaPub -priv cert/arsaPriv
+./keygen -s Aaron -t ec -pub cert/aecPub -priv cert/aecPriv
+
+#Hayden -> Aaron
+echo "Testing Hayden -> Aaron..."
+./lock -d test -p cert/arsaPub -r cert/hecPriv -s Aaron
+./unlock -d test -p cert/hecPub -r cert/arsaPriv -s Hayden
+
+#Aaron -> Hayden 
+echo "Testing Aaron -> Hayden..."
+./lock -d test -p cert/hrsaPub -r cert/aecPriv -s Hayden 
+./unlock -d test -p cert/aecPub -r cert/hrsaPriv -s Aaron
